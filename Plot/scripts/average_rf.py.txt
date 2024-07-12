@@ -1,0 +1,39 @@
+fout=open('average_rf_15tax-1000gene-100bp.txt ','a')
+str1="1000gene-100bp-SVD"
+str2="1000gene-100bp-wQFM-RAxML"
+str3="1000gene-100bp-wQFM-SVD-exponential"
+str4="1000gene-100bp-wQFM-SVD-reciprocal"
+c1=c2=c3=c4=0
+sum1=sum2=sum3=sum4=0
+with open('compute_RF-15tax-1000gene-100bp.txt','r') as fin:
+	lines=fin.readlines()
+	for line in lines:
+		arr=line.split(" ")
+		
+		if str1 in arr[0]:
+			c1+=1
+			
+			sum1+=float(arr[1])
+			
+		elif str2 in arr[0]:
+			c2+=1
+			sum2+=float(arr[1])
+		elif str3 in arr[0]:
+			c3+=1
+			sum3+=float(arr[1])
+		elif str4 in arr[0]:
+			c4+=1
+			sum4+=float(arr[1])
+print(c1,sum1)
+avg_rf1=sum1/c1
+print(c2,sum2)
+avg_rf2=sum2/c2
+print(c3,sum3)
+avg_rf3=sum3/c3
+print(c4,sum4)
+avg_rf4=sum4/c4
+
+print(avg_rf1,avg_rf2,avg_rf3,avg_rf4)
+fout.write(str1+" "+str(avg_rf1)+"\n"+str2+" "+str(avg_rf2)+"\n"+str3+" "+str(avg_rf3)+"\n"+str4+" "+str(avg_rf4))
+fin.close()
+fout.close()
